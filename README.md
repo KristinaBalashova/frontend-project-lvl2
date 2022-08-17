@@ -2,6 +2,8 @@
 [![Actions Status](https://github.com/KristinaBalashova/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/KristinaBalashova/frontend-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9c7ec07c3b1e18bda820/maintainability)](https://codeclimate.com/github/KristinaBalashova/frontend-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/9c7ec07c3b1e18bda820/test_coverage)](https://codeclimate.com/github/KristinaBalashova/frontend-project-lvl2/test_coverage)
+[![Github Actions](https://github.com/KristinaBalashova/frontend-project-lvl2/actions/workflows/github-actions.yml/badge.svg)](https://github.com/KristinaBalashova/frontend-project-lvl2/actions/workflows/github-actions.yml)
+
 
 **Asciinema of gendiff for flat files**
 [![asciicast](https://asciinema.org/a/WjIvSauF1sl9fOlUulgwHKn1y.svg)](https://asciinema.org/a/WjIvSauF1sl9fOlUulgwHKn1y)
