@@ -3,12 +3,13 @@ import _ from 'lodash';
 const getDiff = (obj1, obj2) => {
   const getKeys1 = Object.keys(obj1);
   const getKeys2 = Object.keys(obj2);
-  const uniqKeys = _.uniq(getKeys1, getKeys2);
-  const sotedUniqs = _.sortBy(uniqKeys);
+  const allKeys = getKeys1.concat(getKeys2);
+  const uniqKeys = _.uniq(allKeys);
+  const sortedUniqs = _.sortBy(uniqKeys);
   const keys1 = getKeys1.sort();
   const keys2 = getKeys2.sort();
 
-  const result = sotedUniqs.map((key) => {
+  const result = sortedUniqs.map((key) => {
     const value1 = obj1[key];
     const value2 = obj2[key];
 
@@ -34,7 +35,7 @@ const getDiff = (obj1, obj2) => {
         child: value2,
       };
     }
-    //  if (!keys2.includes(key) && keys1.includes(key)) {
+    // if (!keys2.includes(key) && keys1.includes(key)) {
     return {
       type: 'deleted',
       key,
