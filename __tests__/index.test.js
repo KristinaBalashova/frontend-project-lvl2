@@ -7,8 +7,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const first = getFixturePath('file1.json');
-const second = getFixturePath('file2.json');
+const firstJSON = getFixturePath('file1.json');
+const secondJSON = getFixturePath('file2.json');
+
+const firstYML = getFixturePath('file1.yml');
+const secondYML = getFixturePath('file2.yml');
 
 const expected = `{
 - follow: false
@@ -20,5 +23,9 @@ const expected = `{
 }`;
 
 test('difference test 1', () => {
-  expect(genDiff(first, second)).toEqual(expected);
+  expect(genDiff(firstJSON, secondJSON)).toEqual(expected);
+});
+
+test('difference test 2', () => {
+  expect(genDiff(firstYML, secondYML)).toEqual(expected);
 });
