@@ -4,9 +4,9 @@ import fs from 'fs';
 import getDiff from './compareData.js';
 import defineFormat from './converter.js';
 import getPath from './getPath.js';
-import getFormat from './getFormat.js';
+import getFormat from './stylish.js';
 
-const genDiff = (filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
 // Преобразовать путь, если нужно
   const absolutePath1 = getPath(String(filepath1));
   const absolutePath2 = getPath(String(filepath2));
@@ -20,7 +20,7 @@ const genDiff = (filepath1, filepath2) => {
   const obj2 = defineFormat(String(filepath2), content2);
   // Найти отличие
 
-  const differences = getFormat(getDiff(obj1, obj2));
+  const differences = getFormat(getDiff(obj1, obj2), 0);
 
   return differences;
 };

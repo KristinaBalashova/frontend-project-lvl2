@@ -5,5 +5,10 @@
 [![Github Actions](https://github.com/KristinaBalashova/frontend-project-lvl2/actions/workflows/github-actions.yml/badge.svg)](https://github.com/KristinaBalashova/frontend-project-lvl2/actions/workflows/github-actions.yml)
 
 
-**Asciinema of gendiff for flat files**
-[![asciicast](https://asciinema.org/a/WjIvSauF1sl9fOlUulgwHKn1y.svg)](https://asciinema.org/a/WjIvSauF1sl9fOlUulgwHKn1y)
+**Asciinema of gendiff for flat json files**
+[![asciicast](https://asciinema.org/a/3yEjCliNss2cGDlCVvU5ovvxz.svg)](https://asciinema.org/a/3yEjCliNss2cGDlCVvU5ovvxz)
+
+
+**Asciinema of gendiff for flat yaml files**
+[![asciicast](https://asciinema.org/a/3GAFVLEnug6Kbm4yg2n9hovFp.svg)](https://asciinema.org/a/3GAFVLEnug6Kbm4yg2n9hovFp)
+
