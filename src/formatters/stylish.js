@@ -21,12 +21,12 @@ const makeString = (value, depth) => {
   return `{\n${result.join('\n')}\n${getIndent(depth)}}`;
 };
 
-const getFormat = (array, depth) => {
+const stylishFormat = (array, depth) => {
   const keys = Object.keys(array);
   const result = keys.map((key) => {
     const obj = array[key];
     if (obj.type === 'parent') {
-      return `${getIndent(depth + 1)}${obj.key}: ${getFormat(obj.child, depth + 1)}`;
+      return `${getIndent(depth + 1)}${obj.key}: ${stylishFormat(obj.child, depth + 1)}`;
     }
     if (obj.type === 'stay same') {
       return `${getIndentSign(' ', depth + 1)}${obj.key}: ${makeString(obj.child, depth + 1)}`;
@@ -44,4 +44,4 @@ const getFormat = (array, depth) => {
   return `{\n${finalString}\n${getIndent(depth)}}`;
 };
 
-export default getFormat;
+export default stylishFormat;
