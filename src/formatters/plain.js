@@ -19,13 +19,13 @@ const plainFormat = (array, accum = '') => {
       return plainFormat(obj.child, `${accum}${obj.key}.`);
     }
     if (obj.type === 'deleted') {
-      return `Property '${accum + obj.key}': was removed`;
+      return `Property '${accum + obj.key}' was removed`;
     }
     if (obj.type === 'added') {
-      return `Property '${accum + obj.key}': was added with value: ${addChild(obj.child)}`;
+      return `Property '${accum + obj.key}' was added with value: ${addChild(obj.child)}`;
     }
     if (obj.type === 'diffValue') {
-      return `Property '${accum + obj.key}': was updated. From ${addChild(obj.child)} to ${addChild(obj.child2)}`;
+      return `Property '${accum + obj.key}' was updated. From ${addChild(obj.child)} to ${addChild(obj.child2)}`;
     }
     return null;
   });
