@@ -3,9 +3,7 @@ import _ from 'lodash';
 const getIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(spacesCount * depth);
 
 const getIndentSign = (sign, depth, replacer = ' ', spacesCount = 4) => {
-  let indent = replacer.repeat(depth * spacesCount - 2);
-  indent += sign;
-  indent += ' ';
+  const indent = `${replacer.repeat(depth * spacesCount - 2) + sign} `;
   return indent;
 };
 

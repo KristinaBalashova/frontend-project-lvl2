@@ -7,8 +7,8 @@ const getDiff = (obj1, obj2) => {
 
   const uniqKeys = _.uniq(allKeys);
   const sortedUniqs = _.sortBy(uniqKeys);
-  const keys1 = getKeys1.sort();
-  const keys2 = getKeys2.sort();
+  const keys1 = _.sortBy(getKeys1);
+  const keys2 = _.sortBy(getKeys2);
 
   const result = sortedUniqs.map((key) => {
     const value1 = obj1[key];
