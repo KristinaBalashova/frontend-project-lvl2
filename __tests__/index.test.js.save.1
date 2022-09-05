@@ -1,0 +1,53 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import genDiff from '../src/index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const readFile = (file) => {
+  const filePath = getFixturePath(file);
+  const content = fs.readFileSync(filePath, 'utf8');
+ // console.log(`printing content of file ${file}\n ${content}`);
+  return content;
+  //return fs.readFileSync(filePath, 'utf8');
+};
+
+const firstJSON = getFixturePath('file1.json');
+const secondJSON = getFixturePath('file2.json');
+
+const firstYML = getFixturePath('file1.yml');
+const secondYML = getFixturePath('file2.yml');
+
+//console.log(firstYML,'1', secondYML, '2', firstJSON, '3', secondJSON, '4');
+// const shit = genDiff(firstJSON, secondJSON, 'stylish');
+test('1difference test stylish with json files', () => {
+  const shit = genDiff(firstJSON, secondJSON, 'stylish');
+  const shit1 = 1;
+  const shit2 = 1;
+  console.log(shit,'resultStylish.txt'))
+  expect(shit).toEqual(readFile('resultStylish.txt'));
+});
+
+//test('2difference test stylish with yml files', () => {
+  //expect(genDiff(firstYML, secondYML, 'stylish')).toEqual(readFile('resultStylish.txt'));
+//});
+
+//test('3difference test plain with json files', () => {
+  //expect(genDiff(firstJSON, secondJSON, 'plain')).toEqual(readFile('resultPlain.txt'));
+//});
+
+//test('4difference test plain with yml files', () => {
+  //expect(genDiff(firstYML, secondYML, 'plain')).toEqual(readFile('resultPlain.txt'));
+//});
+
+//test('5difference test stylish default format', () => {
+  //expect(genDiff(firstYML, secondYML)).toEqual(readFile('resultStylish.txt'));
+//});
+
+//test('6difference test stylish default format', () => {
+  //expect(genDiff(firstYML, secondYML, 'json')).toEqual(readFile('resultJSON.txt'));
+//});
+

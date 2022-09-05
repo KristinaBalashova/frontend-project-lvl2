@@ -17,7 +17,7 @@ const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const obj2 = defineFormat(String(filepath2), content2);
 
   const differences = getFormat(getDiff(obj1, obj2), formatName);
-  // console.log(differences);
+  console.log(differences);
   return differences;
 };
 
