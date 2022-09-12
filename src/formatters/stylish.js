@@ -24,18 +24,18 @@ const stylishFormat = (array, depth) => {
   const result = keys.map((key) => {
     const obj = array[key];
     if (obj.type === 'parent') {
-      return `${getIndent(depth + 1)}${obj.key}: ${stylishFormat(obj.child, depth + 1)}`;
+      return `${getIndent(depth + 1)}${obj.key}: ${stylishFormat(obj.children, depth + 1)}`;
     }
     if (obj.type === 'stay same') {
-      return `${getIndentSign(' ', depth + 1)}${obj.key}: ${makeString(obj.child, depth + 1)}`;
+      return `${getIndentSign(' ', depth + 1)}${obj.key}: ${makeString(obj.children, depth + 1)}`;
     }
     if (obj.type === 'deleted') {
-      return `${getIndentSign('-', depth + 1)}${obj.key}: ${makeString(obj.child, depth + 1)}`;
+      return `${getIndentSign('-', depth + 1)}${obj.key}: ${makeString(obj.children, depth + 1)}`;
     }
     if (obj.type === 'added') {
-      return `${getIndentSign('+', depth + 1)}${obj.key}: ${makeString(obj.child, depth + 1)}`;
+      return `${getIndentSign('+', depth + 1)}${obj.key}: ${makeString(obj.children, depth + 1)}`;
     }
-    return `${getIndentSign('-', depth + 1)}${obj.key}: ${makeString(obj.child, depth + 1)}\n${getIndentSign('+', depth + 1)}${obj.key}: ${makeString(obj.child2, depth + 1)}`;
+    return `${getIndentSign('-', depth + 1)}${obj.key}: ${makeString(obj.children, depth + 1)}\n${getIndentSign('+', depth + 1)}${obj.key}: ${makeString(obj.children2, depth + 1)}`;
   });
 
   const finalString = result.join('\n');

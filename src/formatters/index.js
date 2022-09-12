@@ -2,13 +2,16 @@ import stylishFormat from './stylish.js';
 import plainFromat from './plain.js';
 
 const getFormat = (data, format) => {
-  if (format === 'stylish') {
-    return stylishFormat(data, 0);
+  switch (format) {
+    case 'stylish':
+      return stylishFormat(data, 0);
+    case 'plain':
+      return plainFromat(data);
+    case 'json':
+      return JSON.stringify(data);
+    default:
+      throw new Error(`${format} is not supported`);
   }
-  if (format === 'plain') {
-    return plainFromat(data);
-  }
-  return JSON.stringify(data);
 };
 
 export default getFormat;
