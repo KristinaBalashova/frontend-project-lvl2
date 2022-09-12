@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import getDiff from './getDiff.js';
-import defineFormat from './converter.js';
+import parser from './parser.js';
 import getFormat from './formatters/index.js';
 
 const getPath = (way) => path.resolve(process.cwd(), way);
@@ -13,8 +13,8 @@ const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const content1 = fs.readFileSync(absolutePath1, 'utf-8');
   const content2 = fs.readFileSync(absolutePath2, 'utf-8');
 
-  const obj1 = defineFormat(String(filepath1), content1);
-  const obj2 = defineFormat(String(filepath2), content2);
+  const obj1 = parser(content1, path.extname(filepath1));
+  const obj2 = parser(content2, path.extname(filepath2));
 
   const differences = getFormat(getDiff(obj1, obj2), formatName);
   return differences;
