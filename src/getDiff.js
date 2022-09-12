@@ -12,22 +12,28 @@ const getDiff = (obj1, obj2) => {
     const value1 = obj1[key];
     const value2 = obj2[key];
 
-    if (_.isObject(value1) && _.isObject(value2)) {
+    if (typeof value1 === 'object' && typeof value2 === 'object') {
       return {
         type: 'parent',
         key,
         children: getDiff(value1, value2),
       };
     }
-
-    if (keys2.includes(key) && keys1.includes(key) && value1 === value2) {
+    if (!keys1.includes(key)) {
       return {
-        type: 'stay same',
+        type: 'added',
+        key,
+        children: value2,
+      };
+    }
+    if (!keys2.includes(key)) {
+      return {
+        type: 'deleted',
         key,
         children: value1,
       };
     }
-    if (keys2.includes(key) && keys1.includes(key) && value1 !== value2) {
+    if (value1 !== value2) {
       return {
         type: 'diffValue',
         key,
@@ -35,21 +41,13 @@ const getDiff = (obj1, obj2) => {
         children2: value2,
       };
     }
-    if (keys2.includes(key) && !keys1.includes(key)) {
-      return {
-        type: 'added',
-        key,
-        children: value2,
-      };
-    }
-    // if (!keys2.includes(key) && keys1.includes(key)) {
+    // if (value1 === value2)
     return {
-      type: 'deleted',
+      type: 'stay same',
       key,
       children: value1,
     };
   });
-
   return result;
 };
 

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import getDiff from './compareData.js';
+import getDiff from './getDiff.js';
 import defineFormat from './converter.js';
 import getFormat from './formatters/index.js';
 
