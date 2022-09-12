@@ -1,12 +1,6 @@
 import _ from 'lodash';
 
-const getIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(spacesCount * depth);
-
-const getIndentSign = (sign, depth, replacer = ' ', spacesCount = 4) => {
-  const indent = `${replacer.repeat(depth * spacesCount - 2) + sign} `;
-  return indent;
-};
-
+const getIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(spacesCount * depth - 2);
 const makeString = (value, depth) => {
   if (!_.isObject(value)) {
     return value;
@@ -14,32 +8,32 @@ const makeString = (value, depth) => {
   const keys = Object.keys(value);
   const result = keys.map((key) => {
     const newKey = value[key];
-    return `${getIndent(depth + 1)}${key}: ${makeString(newKey, depth + 1)}`;
+    return `${getIndent(depth + 1)}  ${key}: ${makeString(newKey, depth + 1)}`;
   });
-  return `{\n${result.join('\n')}\n${getIndent(depth)}}`;
+  return `{\n${result.join('\n')}\n  ${getIndent(depth)}}`;
 };
 
-const stylishFormat = (array, depth) => {
-  const keys = Object.keys(array);
-  const result = keys.map((key) => {
-    const obj = array[key];
-    if (obj.type === 'parent') {
-      return `${getIndent(depth + 1)}${obj.key}: ${stylishFormat(obj.children, depth + 1)}`;
-    }
-    if (obj.type === 'stay same') {
-      return `${getIndentSign(' ', depth + 1)}${obj.key}: ${makeString(obj.children, depth + 1)}`;
-    }
-    if (obj.type === 'deleted') {
-      return `${getIndentSign('-', depth + 1)}${obj.key}: ${makeString(obj.children, depth + 1)}`;
-    }
-    if (obj.type === 'added') {
-      return `${getIndentSign('+', depth + 1)}${obj.key}: ${makeString(obj.children, depth + 1)}`;
-    }
-    return `${getIndentSign('-', depth + 1)}${obj.key}: ${makeString(obj.children, depth + 1)}\n${getIndentSign('+', depth + 1)}${obj.key}: ${makeString(obj.children2, depth + 1)}`;
-  });
+const stylishFormat = (array) => {
+  const iter = (node, depth = 1) => {
+    const result = node.map((element) => {
+      if (element.type === 'parent') {
+        return `${getIndent(depth)}  ${element.key}: {\n${iter(element.children, depth + 1)}\n${getIndent(depth)}  }`;
+      }
+      if (element.type === 'stay same') {
+        return `${getIndent(depth)}  ${element.key}: ${makeString(element.children, depth)}`;
+      }
+      if (element.type === 'deleted') {
+        return `${getIndent(depth)}- ${element.key}: ${makeString(element.children, depth)}`;
+      }
+      if (element.type === 'added') {
+        return `${getIndent(depth)}+ ${element.key}: ${makeString(element.children, depth)}`;
+      }
+      return `${getIndent(depth)}- ${element.key}: ${makeString(element.children, depth)}\n${getIndent(depth)}+ ${element.key}: ${makeString(element.children2, depth)}`;
+    });
 
-  const finalString = result.join('\n');
-  return `{\n${finalString}\n${getIndent(depth)}}`;
+    return result.join('\n');
+  };
+  return `{\n${iter(array)}\n}`;
 };
 
 export default stylishFormat;
