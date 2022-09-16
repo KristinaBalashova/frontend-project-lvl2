@@ -12,7 +12,7 @@ const getDiff = (obj1, obj2) => {
     const value1 = obj1[key];
     const value2 = obj2[key];
 
-    if (typeof value1 === 'object' && typeof value2 === 'object') {
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
       return {
         type: 'parent',
         key,
